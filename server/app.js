@@ -22,6 +22,6 @@ app.use(api);
 //     );
 //     res.send(html);
 // });
-// 监听8088端口
-app.listen(8088);
+// 监听9500端口
+app.listen(9500);
 console.log("**********【server启动成功】**********");
