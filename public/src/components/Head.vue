@@ -2,6 +2,10 @@
 $headerBg: #000;
 $height: 68px;
 $navWidth: 100px;
+input{
+    border: none;
+    outline: none;
+}
 // flex布局函数；使用方式：@include flexUi;
 @mixin flexUi($justify:flex-start) {
     display: flex;
