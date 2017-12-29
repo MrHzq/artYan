@@ -43,6 +43,7 @@
             }
         }
     }
+    // 下面所有的
     .others {
         position: relative;
         z-index: 100;
@@ -64,6 +65,7 @@
                 }
             }
         }
+        // 推荐
         .tuijian {
             width: 1180px;
             margin: 0 auto;
@@ -222,8 +224,59 @@
                 }
             }
         }
+        // 探索全新的艺术世界
+        .go {
+            @include flexUi;
+            height: 300px;
+            color: #fff;
+
+            .left {
+                @include flexUi(space-between,flex-start);
+                flex-direction: column;
+                flex: 1;
+                height: 100%;
+                box-sizing: border-box;
+                padding: 40px 0 40px 11.5%;
+                background-color: #666;
+                p {
+                    font-size: 30px;
+                }
+            }
+            .right {
+                position: relative;
+                @include flexUi(center);
+                flex-direction: column;
+                width: 27%;
+                height: 100%;
+                font-size: 40px;
+                font-weight: bold;
+                background-color: #000;
+                cursor: pointer;
+                p {
+                    position: relative;
+                    z-index: 2;
+                    transform: translateX(0);
+                    transition: transform 0.4s;
+                }
+                div {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 0;
+                    width: 0;
+                    height: 100%;
+                    transition: width 0.5s;
+                    background-color: #3c948b;
+                }
+                &:hover div {
+                    width: 100%;
+                }
+                &:hover p {
+                    transform: translateX(40px);
+                }
+            }
+        }
     }
-    // 推荐
 }
 </style>
 
@@ -235,6 +288,7 @@
                 <li v-for="i in 6" :key="i" :class="{currLi:i===currIndex}" @click="clickLi(i)"></li>
             </ul>
         </div>
+        <!-- 其他下面所有东西 -->
         <div class="others">
             <!-- 推荐 -->
             <div class="tuijian">
@@ -306,12 +360,29 @@
                                 <ul class="info">
                                     <li>{{newData1[i+1].artist}}</li>
                                     <li>{{newData1[i+1].name}}</li>
-                                    <li>{{newData1[i+1].time}}</li>                                   <li>{{newData1[i+1].classfiy}} {{newData1[i+1].size.x}}x{{newData1[i+1].size.y}} cm</li>
+                                    <li>{{newData1[i+1].time}}</li>
+                                    <li>{{newData1[i+1].classfiy}} {{newData1[i+1].size.x}}x{{newData1[i+1].size.y}} cm</li>
                                     <li>{{newData1[i+1].price | formatMoney}}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!-- 探索全新的艺术世界 -->
+            <div class="go">
+                <div class="left">
+                    <p>现在，去探索全新的艺术世界</p>
+                    <div class="selectBox">
+                        <select></select>
+                    </div>
+                    <span>前往
+                        <router-link to="/originalArt" tag="b">原创艺术</router-link> 利用更强大的筛选引擎挑选作品 </span>
+                </div>
+                <div class="right">
+                    <p>开始</p>
+                    <p>GO</p>
+                    <div></div>
                 </div>
             </div>
         </div>
@@ -325,23 +396,23 @@ export default {
             currIndex: 1,
             // banner 定时器
             timer: null,
-            // 分类
+            // 【推荐】【分类】
             classArr: ["油画", "版画", "水墨", "水彩"],
             // 当前分类
             currClassify: 0,
             // 【推荐】数据
             tuiJianData: [],
-            // 换一换 是否旋转flag
+            // 【换一换】 是否旋转flag
             rotateClass: false,
             // 最新上架数据1
             newData0: [],
             // 最新上架数据2
             newData1: [],
-            // 后面的div 下标
+            // 背后 div的下标
             back: 0,
-            // 换一换 定时器
+            // 【换一换】 定时器
             timer2: 1,
-            // 换一换 点击次数
+            // 【换一换】 点击次数
             huanNum: 0
         };
     },

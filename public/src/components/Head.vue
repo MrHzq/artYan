@@ -256,19 +256,19 @@ export default {
             navList: [
                 {
                     name: "原创艺术",
-                    toSrc: "/originalArt"
+                    toSrc: "/originalart"
                 },
                 {
                     name: "造艺",
-                    toSrc: "/makeArt"
+                    toSrc: "/makeart"
                 },
                 {
                     name: "藏艺术",
-                    toSrc: "/hideArt"
+                    toSrc: "/hideart"
                 },
                 {
                     name: "我的珍藏",
-                    toSrc: "/myCollection"
+                    toSrc: "/mycollection"
                 }
             ],
             //是否显示搜索框
