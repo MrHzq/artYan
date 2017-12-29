@@ -2,7 +2,7 @@
 $headerBg: #000;
 $height: 68px;
 $navWidth: 100px;
-input{
+input {
     border: none;
     outline: none;
 }
@@ -28,8 +28,15 @@ input{
         border-bottom-color: currentColor;
     }
 }
-#main {
+.main {
     position: relative;
+    width: 100%;
+}
+.fixedClass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
 }
 //头部 盒子样式
 header {
@@ -203,7 +210,7 @@ header {
 }
 </style>
 <template>
-    <div id="main">
+    <div class="main" :class="{fixedClass:this.$route.path==='/index'}">
         <header>
             <router-link to="/index" tag="div" class="logo" active-class="actived">艺言</router-link>
             <nav>
