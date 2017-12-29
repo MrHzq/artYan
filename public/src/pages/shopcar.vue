@@ -423,13 +423,7 @@ export default {
     filters: {
         //金额格式化
         formatMoney(val) {
-            if (val === 0) {
-                return "¥0";
-            } else {
-                let _val = String(val).split("");
-                _val.splice(_val.length - 3, 0, ",");
-                return "¥" + _val.join("");
-            }
+            return "￥" + String(val).replace(/\B(?=(?:\d{3})+$)/g, ",");
         }
     },
     mounted() {

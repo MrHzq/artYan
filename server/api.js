@@ -403,12 +403,14 @@ app.post("/api/insertAddress", (req, res) => {
         });
     }
 });
+
 // 获取地址
 app.get("/api/selectAddress", (req, res) => {
     models.Address.find({ userid }, (err, data) => {
         res.send(data);
     });
 });
+
 // 删除地址
 app.post("/api/delAddress", (req, res) => {
     let _id = mongoose.Types.ObjectId(req.body._id);
@@ -422,10 +424,30 @@ app.post("/api/insertOrders", (req, res) => {
         res.send(data._id);
     });
 });
+
 // 获取订单
 app.post("/api/selectOrders", (req, res) => {
     req.body._id = mongoose.Types.ObjectId(req.body._id);
     models.Orders.find(req.body, (err, data) => {
+        res.send(data);
+    });
+});
+
+// 获取【首页】==>【推荐】 16条数据
+app.get("/api/getTuiJianData", (req, res) => {
+    let youhua = models.Goods.find({ classify: "油画" }).limit(4).exec(),
+        banhua = models.Goods.find({ classify: "版画" }).limit(4).exec(),
+        shuimo = models.Goods.find({ classify: "水墨" }).limit(4).exec(),
+        shuicai = models.Goods.find({ classify: "水彩" }).limit(4).exec();
+    Promise.all([youhua, banhua, shuimo, shuicai]).then(data => {
+        res.send(data);
+    });
+});
+
+// 获取【首页】==>【最新上架】 20条数据
+app.post("/api/getNewData", (req, res) => {
+
+    models.Goods.find().skip(req.body.num).limit(req.body.limit).exec((err, data) => {
         res.send(data);
     });
 });

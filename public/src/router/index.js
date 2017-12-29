@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import index from "@/pages/index";
-import originalArt from "@/pages/originalArt";
-import goodsDetails from "@/pages/goodsDetails";
+import originalart from "@/pages/originalart";
+import goodsdetails from "@/pages/goodsdetails";
 import login from "@/pages/login";
 import shopcar from "@/pages/shopcar";
 import goumai from "@/pages/goumai";
@@ -20,12 +20,12 @@ export default new Router({
             component: index
         },
         {
-            path: "/originalArt",
-            component: originalArt
+            path: "/originalart",
+            component: originalart
         },
         {
-            path: "/goodsDetails/:id/imgSrc/:img",
-            component: goodsDetails
+            path: "/goodsdetails/:id/imgSrc/:img",
+            component: goodsdetails
         },
         {
             path: "/login",

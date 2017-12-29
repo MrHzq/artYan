@@ -1,4 +1,7 @@
 <style lang="scss" scoped>
+[v-cloak] {
+    display: none;
+}
 @mixin flexUi($justify:flex-start,$align:center) {
     display: flex;
     display: -webkit-flex;
@@ -78,6 +81,7 @@
                         height: 280px;
                         overflow: hidden;
                         cursor: pointer;
+
                         div {
                             width: 280px;
                             height: 280px;
@@ -98,6 +102,7 @@
                             &:last-child {
                                 color: #000;
                                 font-weight: 600;
+                                font-size: 13px;
                             }
                         }
                     }
@@ -145,17 +150,24 @@
                 @include flexUi;
                 .item {
                     position: relative;
-                    perspective: 500;
-                    transform-style: preserve-3d;
                     cursor: pointer;
                     .itemDiv {
                         position: absolute;
                         width: 100%;
                         height: 100%;
                         overflow: hidden;
+                        backface-visibility: hidden;
+
+                        &:first-child {
+                            transform: rotateY(-180deg);
+                        }
                         .imgBox {
                             height: 100%;
                             transition: transform 0.5s;
+                            background-image: url("/static/img/23.jpg");
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: cover;
                         }
                         &:hover .info {
                             opacity: 1;
@@ -182,6 +194,8 @@
 
                 .left {
                     @include flexUi(space-between);
+                    perspective: 500;
+                    transform-style: preserve-3d;
                     flex: 1;
                     .item {
                         width: 280px;
@@ -190,6 +204,8 @@
                 }
                 .right {
                     @include flexUi(space-between);
+                    perspective: 500;
+                    transform-style: preserve-3d;
                     flex: 1;
                     margin-left: 20px;
                     flex-wrap: wrap;
@@ -201,17 +217,6 @@
                         }
                     }
                 }
-                // 旋转特效
-                .newTeXiao-enter,.newTeXiao-leave-to {
-                    opacity: 0;
-                }
-                .newTeXiao-enter-active,.newTeXiao-leave-active {
-                    transition: all 1s;
-                }
-                .newTeXiao-enter-to,.newTeXiao-leave {
-                    opacity: 1;
-                    transform: rotateY(180deg);
-                }
             }
         }
     }
@@ -220,7 +225,7 @@
 </style>
 
 <template>
-    <div class="main">
+    <div class="main" v-cloak>
         <!-- banner -->
         <div class="banner" :style="{background:'url(static/banner/banner'+currIndex+'.jpg) center'}">
             <ul>
@@ -232,22 +237,22 @@
             <div class="tuijian">
                 <div class="title">
                     <h2>推荐 / CATEGORY</h2>
-                    <router-link to="/originalArt" tag="span">更多</router-link>
+                    <router-link to="/originalart" tag="span">更多</router-link>
                 </div>
                 <div class="content">
-                    <div class="item" v-for="i in 4" :key="i">
-                        <router-link class="imgBox" tag="div" to="/originalArt">
-                            <div :style="{background:'url(static/img/20.jpg) center',backgroundSize:'cover'}"></div>
+                    <div class="item" v-for="i in tuiJianData[currClass]" :key="i._id">
+                        <router-link class="imgBox" tag="div" to="/originalart">
+                            <div :style="{background:'url(static/img/'+i.images+'.jpg) center',backgroundSize:'cover'}"></div>
                         </router-link>
                         <ul class="info">
-                            <li>{i.artist}</li>
-                            <li>{i.name} ，{i.time}</li>
-                            <li>{i.classfiy} {i.size.x}x{i.size.y}cm</li>
-                            <li>{i.price}</li>
+                            <li>{{i.artist}}</li>
+                            <li>{{i.name}}，{{i.time}}</li>
+                            <li>{{i.classfiy}} {{i.size.x}}x{{i.size.y}}cm</li>
+                            <li>{{i.price | formatMoney}}</li>
                         </ul>
                     </div>
                     <ul class="classBox">
-                        <li v-for="i in classArr" :key="i" :class="{currClass:i===currClass}" @click="currClass=i">{{i}}</li>
+                        <li v-for="(i,index) in classArr" :key="i" :class="{currClass:index===currClass}" @click="currClass=index">{{i}}</li>
                     </ul>
                 </div>
             </div>
@@ -255,57 +260,53 @@
             <div class="new">
                 <div class="title">
                     <h2>最新上架 / NEW</h2>
-                    <span @click="huanFun">
+                    <span @click="timer2 && huanFun()">
                         <i class="iconfont icon-weibiaoti--" :class="{rotateSpan:rotateClass}"></i> 换一换
                     </span>
                 </div>
                 <div class="content">
                     <div class="left">
-                        <div class="item" v-for="i in 2" :key="i">
-                            <transition name="newTeXiao">
-                                <div class="itemDiv" v-if="isRotateItme" key="itemDiv1">
-                                    <div class="imgBox" :style="{background:'url(static/img/20.jpg) center no-repeat',backgroundSize:'cover'}"></div>
-                                    <ul class="info">
-                                        <li>{i.artist}</li>
-                                        <li>{i.name} ，{i.time}</li>
-                                        <li>{i.classfiy} {i.size.x}x{i.size.y}cm</li>
-                                        <li>{i.price}</li>
-                                    </ul>
-                                </div>
-                                <div class="itemDiv" v-else key="itemDiv2">
-                                    <div class="imgBox" :style="{background:'url(static/img/21.jpg) center no-repeat',backgroundSize:'cover'}"></div>
-                                    <ul class="info">
-                                        <li>{i.artist}</li>
-                                        <li>{i.name} ，{i.time}</li>
-                                        <li>{i.classfiy} {i.size.x}x{i.size.y}cm</li>
-                                        <li>{i.price}</li>
-                                    </ul>
-                                </div>
-                            </transition>
+                        <div class="item" v-for="(i,index) in 2" :key="i" ref="itemEl">
+                            <div class="itemDiv" key="itemDiv1" v-if="newData0.length">
+                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData0[index].images+'.jpg)'}"></div>
+                                <ul class="info">
+                                    <li>{{newData0[index].artist}}</li>
+                                    <li>{{newData0[index].name}}，{{newData0[index].time}}</li>
+                                    <li>{{newData0[index].classfiy}} {{newData0[index].size.x}}x{{newData0[index].size.y}}cm</li>
+                                    <li>{{newData0[index].price | formatMoney}}</li>
+                                </ul>
+                            </div>
+                            <div class="itemDiv" key="itemDiv2" v-if="newData1.length">
+                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData1[index].images+'.jpg)'}"></div>
+                                <ul class="info">
+                                    <li>{{newData1[index].artist}}</li>
+                                    <li>{{newData1[index].name}}，{{newData1[index].time}}</li>
+                                    <li>{{newData1[index].classfiy}} {{newData1[index].size.x}}x{{newData1[index].size.y}}cm</li>
+                                    <li>{{newData1[index].price | formatMoney}}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="right">
-                        <div class="item" v-for="i in 8" :key="i">
-                            <transition name="newTeXiao">
-                                <div class="itemDiv" v-if="isRotateItme" key="itemDiv3">
-                                    <div class="imgBox" :style="{background:'url(static/img/23.jpg) center no-repeat',backgroundSize:'cover'}"></div>
-                                    <ul class="info">
-                                        <li>{i.artist}</li>
-                                        <li>{i.name} ，{i.time}</li>
-                                        <li>{i.classfiy} {i.size.x}x{i.size.y}cm</li>
-                                        <li>{i.price}</li>
-                                    </ul>
-                                </div>
-                                <div class="itemDiv" v-else key="itemDiv4">
-                                    <div class="imgBox" :style="{background:'url(static/img/22.jpg) center no-repeat',backgroundSize:'cover'}"></div>
-                                    <ul class="info">
-                                        <li>{i.artist}</li>
-                                        <li>{i.name} ，{i.time}</li>
-                                        <li>{i.classfiy} {i.size.x}x{i.size.y}cm</li>
-                                        <li>{i.price}</li>
-                                    </ul>
-                                </div>
-                            </transition>
+                        <div class="item" v-for="i in 8" :key="i" ref="itemEl">
+                            <div class="itemDiv" key="itemDiv3" v-if="newData0.length">
+                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData0[i+1].images+'.jpg)'}"></div>
+                                <ul class="info">
+                                    <li>{{newData0[i+1].artist}}</li>
+                                    <li>{{newData0[i+1].name}} ，{{newData0[i+1].time}}</li>
+                                    <li>{{newData0[i+1].classfiy}} {{newData0[i+1].size.x}}x{{newData0[i+1].size.y}}cm</li>
+                                    <li>{{newData0[i+1].price | formatMoney}}</li>
+                                </ul>
+                            </div>
+                            <div class="itemDiv" key="itemDiv4" v-if="newData1.length">
+                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData1[i+1].images+'.jpg)'}"></div>
+                                <ul class="info">
+                                    <li>{{newData1[i+1].artist}}</li>
+                                    <li>{{newData1[i+1].name}} ，{{newData1[i+1].time}}</li>
+                                    <li>{{newData1[i+1].classfiy}} {{newData1[i+1].size.x}}x{{newData1[i+1].size.y}}cm</li>
+                                    <li>{{newData1[i+1].price | formatMoney}}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -319,81 +320,32 @@ export default {
         return {
             // banner 当前下标
             currIndex: 1,
-            // 定时器
+            // banner 定时器
             timer: null,
             // 分类
             classArr: ["油画", "版画", "水墨", "水彩"],
             // 当前分类
-            currClass: "油画",
+            currClass: 0,
+            // 【推荐】数据
+            tuiJianData: [],
             // 换一换 是否旋转flag
             rotateClass: false,
-            // 最新上架数据
-            newData1: [
-                {
-                    imgSrc: "21"
-                },
-                {
-                    imgSrc: "22"
-                },
-                {
-                    imgSrc: "23"
-                },
-                {
-                    imgSrc: "23"
-                },
-                {
-                    imgSrc: "23"
-                },
-                {
-                    imgSrc: "23"
-                },
-                {
-                    imgSrc: "20"
-                },
-                {
-                    imgSrc: "20"
-                },
-                {
-                    imgSrc: "20"
-                },
-                {
-                    imgSrc: "20"
-                }
-            ],
-            newData2: [
-                {
-                    imgSrc: "23"
-                },
-                {
-                    imgSrc: "20"
-                },
-                {
-                    imgSrc: "21"
-                },
-                {
-                    imgSrc: "21"
-                },
-                {
-                    imgSrc: "21"
-                },
-                {
-                    imgSrc: "21"
-                },
-                {
-                    imgSrc: "22"
-                },
-                {
-                    imgSrc: "22"
-                },
-                {
-                    imgSrc: "22"
-                },
-                {
-                    imgSrc: "22"
-                }
-            ],
-            isRotateItme: false
+            // 最新上架数据1
+            newData0: [],
+            // 最新上架数据2
+            newData1: [],
+            // 后面的div 下标
+            back: 0,
+            // 换一换 定时器
+            timer2: 1,
+            // 换一换 点击次数
+            huanNum: 0
         };
+    },
+    filters: {
+        formatMoney(val) {
+            return "￥" + String(val).replace(/\B(?=(?:\d{3})+$)/g, ",");
+        }
     },
     methods: {
         // banner 小圆点点击事件
@@ -408,13 +360,82 @@ export default {
                 this.currIndex < 6 ? this.currIndex++ : (this.currIndex = 1);
             }, 5000);
         },
+        // 获取【推荐】数据，一次获取4个分类*4个
+        getTuiJianData() {
+            this.$http.get("/api/getTuiJianData").then(data => {
+                this.tuiJianData = data.data;
+            });
+        },
         // 换一换 事件
         huanFun() {
-            this.isRotateItme = !this.isRotateItme;
+            this.timer2 = 0;
+            let back = this.back,
+                front = Math.abs(this.back - 1);
+            let itemEl = this.$refs.itemEl;
+            // for (let index = 0; index < itemEl.length; index++) {
+            //     let time = index * 0.2;
+            //     if (index >= 2) {
+            //         time = 0.4;
+            //     }
+            //     setTimeout(() => {
+            //         itemEl[index].children[back].style.cssText =
+            //             "transform:rotateY(0deg);transition:transform 1.5s;";
+            //         itemEl[index].children[front].style.cssText =
+            //             "transform:rotateY(180deg);transition:transform 1.5s;";
+            //         setTimeout(() => {
+            //             itemEl[index].children[front].style.cssText =
+            //                 "transform:rotateY(-180deg);transition:transform 0s;";
+            //             this.timer2 = 1;
+            //             if (index === 9) {
+            //                 this.huanNum++;
+            //                 this.getNewData();
+            //             }
+            //             this.back = front;
+            //         }, 1400);
+            //     }, time * 1000);
+            // }
+            itemEl.forEach((val, index) => {
+                let time = index * 0.2;
+                if (index >= 2) {
+                    time = 0.4;
+                }
+                setTimeout(() => {
+                    val.children[back].style.cssText =
+                        "transform:rotateY(0deg);transition:transform 1.5s;";
+                    val.children[front].style.cssText =
+                        "transform:rotateY(180deg);transition:transform 1.5s;";
+                    setTimeout(() => {
+                        val.children[front].style.cssText =
+                            "transform:rotateY(-180deg);transition:transform 0s;";
+                        this.timer2 = 1;
+                        if (index === 9) {
+                            this.huanNum++;
+                            this.getNewData();
+                        }
+                        this.back = front;
+                    }, 1400);
+                }, time * 1000);
+            });
+        },
+        // 获取 【最新上架】 10条数据
+        getNewData(limit = 10) {
+            let num = limit === 20 ? 0 : (this.huanNum + 1) * 10;
+            this.$http.post("/api/getNewData", { num, limit }).then(data => {
+                if (limit === 10) {
+                    let i = "newData" + this.back;
+                    this[i] = data.data;
+                } else {
+                    this.newData0 = data.data.slice(0, 10);
+                    this.newData1 = data.data.slice(10, 20);
+                }
+            });
         }
     },
     mounted() {
         this.autoplay();
+        this.getTuiJianData();
+        this.getNewData(20);
+        // this.getNewData();
     }
 };
 </script>
