@@ -649,8 +649,8 @@
                     <div class="left">
                         <img src="/static/artist/wushuang.jpg" alt="">
                         <div>
-                            <p>{name}：{hua}</p>
-                            <p>{wenzi}</p>
+                            <p>吴霜：做一个艺术的信徒</p>
+                            <p>"艺术是信仰，你不信，它便什么也不是，你信，它就能给你所有。"</p>
                         </div>
                     </div>
                     <div class="right">
