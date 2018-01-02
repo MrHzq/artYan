@@ -8,6 +8,7 @@ import shopcar from "@/pages/shopcar";
 import goumai from "@/pages/goumai";
 import xiadan from "@/pages/xiadan";
 import zhifu from "@/pages/zhifu";
+import demo from "@/pages/demo";
 
 Vue.use(Router);
 
@@ -34,6 +35,10 @@ export default new Router({
         {
             path: "/shopcar",
             component: shopcar
+        },
+        {
+            path: "/demo",
+            component: demo
         },
         {
             path: "/goumai/:status",

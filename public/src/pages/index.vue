@@ -320,20 +320,21 @@
                 width: 100%;
                 overflow: hidden;
                 .content {
-                    @include flexUi;
+                    @include flexUi(space-between);
                     transition: margin-left 1s;
                     width: 4870px;
                     .item {
                         position: relative;
-                        width: auto;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        width: 320px;
                         height: 380px;
                         background-image: url("/static/special/2017112818064833218c87b83.jpg");
-                        background-size: 440px 380px;
-                        background-position: center center;
+                        background-size: 440px 100%;
+                        background-position: center;
                         background-repeat: no-repeat;
-                        margin-right: 30px;
-                        cursor: pointer;
-                        user-select: none;
+                        transition: width 0.5s;
                         &:last-child {
                             margin-right: 0;
                         }
@@ -361,6 +362,7 @@
                             left: 0;
                             width: 100%;
                             height: 100%;
+                            cursor: pointer;
                         }
                     }
                 }
@@ -723,18 +725,20 @@ export default {
             let ml = parseInt(content.style.marginLeft);
             if (flag === 1) {
                 //向右移动
-                if (ml < 0) content.style.marginLeft = ml + 974 + "px";
+                if (ml < 0) content.style.marginLeft = ml + 838 + "px";
             } else {
                 //向左移动
-                if (ml > -3896) content.style.marginLeft = ml - 974 + "px";
+                if (ml > -3350) content.style.marginLeft = ml - 838 + "px";
             }
         },
         // 专题 item 移入展开效果
         zhankai(e) {
+            e.target.parentNode.style.width = "440px";
             e.target.previousSibling.previousSibling.style.padding = "0 60px";
         },
         // 专题 item 移出缩回效果
         suohui(e) {
+            e.target.parentNode.style.width = "320px";
             e.target.previousSibling.previousSibling.style.padding = "0 0";
         }
     },
