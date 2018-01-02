@@ -258,10 +258,10 @@ export default {
                     name: "畅所艺言",
                     toSrc: "/originalart"
                 },
-                {
-                    name: "DEMO",
-                    toSrc: "/demo"
-                },
+                // {
+                //     name: "DEMO",
+                //     toSrc: "/demo"
+                // },
                 // {
                 //     name: "藏艺术",
                 //     toSrc: "/hideart"

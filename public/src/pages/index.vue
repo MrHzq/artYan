@@ -342,6 +342,7 @@
                             width: 320px;
                             transition: padding 0.5s;
                             height: 100%;
+                            user-select: none;
                             background-color: rgba(0, 0, 0, 0.2);
                             p {
                                 color: #fff;
@@ -363,6 +364,145 @@
                             width: 100%;
                             height: 100%;
                             cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        // 艺术家
+        .artist {
+            width: 1180px;
+            margin: 80px auto;
+            .title {
+                span {
+                    display: inline-block;
+                    width: 180px;
+                    text-align: center;
+                    line-height: 38px;
+                    height: 40px;
+                    border-radius: 20px;
+                    border: solid 1px #3c948b;
+                    box-sizing: border-box;
+                    color: #3a8373;
+                    font-size: 18px;
+                    font-weight: 500;
+                    &:hover {
+                        background-color: #3c948b;
+                        color: #ffffff;
+                    }
+                }
+            }
+            .content {
+                @include flexUi;
+                margin-top: 50px;
+                .left {
+                    position: relative;
+                    width: 450px;
+                    height: 320px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    user-select: none;
+                    &:hover img {
+                        transform: scale(1.05);
+                    }
+                    img {
+                        width: 100%;
+                        transition: transform 0.5s;
+                    }
+                    div {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        color: #fff;
+                        padding-top: 180px;
+                        box-sizing: border-box;
+                        background-color: rgba(0, 0, 0, 0.2);
+                        p {
+                            font-size: 12px;
+                            margin-left: 20px;
+                            &:first-child {
+                                font-size: 16px;
+                                margin-bottom: 20px;
+                            }
+                        }
+                    }
+                }
+                .right {
+                    flex: 1;
+                    @include flexUi(flex-start,flex-start);
+                    flex-direction: column;
+                    height: 320px;
+                    margin-left: 25px;
+                    padding-left: 24px;
+                    border-left: 1px solid #d8d8d8;
+                    .showImg {
+                        width: 100%;
+                        flex: 1;
+                        @include flexUi(space-between,flex-start);
+                        margin-top: 20px;
+                        .item {
+                            height: 100%;
+                            @include flexUi(space-between);
+                            flex-direction: column;
+                            .imgBox {
+                                width: 180px;
+                                height: 180px;
+                                position: relative;
+                                cursor: pointer;
+                                &:hover div:nth-child(2) {
+                                    top: 15px;
+                                    left: 15px;
+                                }
+                                &:hover div:last-child {
+                                    top: 30px;
+                                    left: 30px;
+                                }
+                                div {
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    width: 180px;
+                                    height: 180px;
+                                    background-image: url("/static/img/7.jpg");
+                                    background-size: cover;
+                                    opacity: 0.2;
+                                    transition: all 0.5s;
+                                    &:nth-child(2) {
+                                        opacity: 0.6;
+                                    }
+                                    &:last-child {
+                                        top: 10px;
+                                        left: 10px;
+                                        opacity: 1;
+                                        box-shadow: -4px 2px 6px 0
+                                            rgba(0, 0, 0, 0.5);
+                                    }
+                                }
+                            }
+
+                            .name {
+                                width: 50%;
+                                margin: 0 auto;
+                                text-align: center;
+                                padding-top: 15px;
+                                border-top: 1px solid #000;
+                                div {
+                                    &:last-child {
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                            &:nth-child(2) {
+                                flex-direction: column-reverse;
+                                .name {
+                                    padding-top: 0;
+                                    border-top: none;
+                                    border-bottom: 1px solid #000;
+                                    padding-bottom: 15px;
+                                }
+                            }
                         }
                     }
                 }
@@ -495,6 +635,38 @@
                                 <p>{{i.txt}}</p>
                             </div>
                             <div class="cover" @mouseover="zhankai" @mouseout="suohui"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 艺术家 -->
+            <div class="artist">
+                <div class="title">
+                    <h2>艺术家 / ARTIST</h2>
+                    <span>作品征集全面开放 </span>
+                </div>
+                <div class="content">
+                    <div class="left">
+                        <img src="/static/artist/wushuang.jpg" alt="">
+                        <div>
+                            <p>{name}：{hua}</p>
+                            <p>{wenzi}</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <p>更多艺术家</p>
+                        <div class="showImg">
+                            <div class="item" v-for="i in 3" :key="i">
+                                <div class="imgBox">
+                                    <div :style="{backgroundImage:'url(/static/img/7.jpg)'}"></div>
+                                    <div :style="{backgroundImage:'url(/static/img/8.jpg)'}"></div>
+                                    <div :style="{backgroundImage:'url(/static/img/21.jpg)'}"></div>
+                                </div>
+                                <div class="name">
+                                    <div>陈可</div>
+                                    <div>6件</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
