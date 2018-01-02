@@ -531,7 +531,7 @@
                 <div class="content">
                     <div class="item" v-for="i in tuiJianData[currClassify]" :key="i._id">
                         <router-link class="imgBox" tag="div" :to="'/goodsDetails/'+i._id+'/imgSrc/'+i.images">
-                            <div :style="{backgroundImage:'url(static/img/'+i.images+'.jpg)'}"></div>
+                            <div :style="{backgroundImage:'url(static/goods/'+i.images+'.jpg)'}"></div>
                         </router-link>
                         <ul class="info">
                             <li>{{i.artist}}</li>
@@ -557,7 +557,7 @@
                     <div class="left">
                         <div class="item" v-for="(i,index) in 2" :key="i" ref="itemEl">
                             <router-link tag="div" :to="'/goodsDetails/'+newData0[index]._id+'/imgSrc/'+newData0[index].images" class="itemDiv" v-if="newData0.length">
-                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData0[index].images+'.jpg)'}"></div>
+                                <div class="imgBox" :style="{backgroundImage:'url(static/goods/'+newData0[index].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData0[index].artist}}</li>
                                     <li>{{newData0[index].name}}，{{newData0[index].time}}</li>
@@ -566,7 +566,7 @@
                                 </ul>
                             </router-link>
                             <router-link tag="div" :to="'/goodsDetails/'+newData1[index]._id+'/imgSrc/'+newData1[index].images" class="itemDiv" v-if="newData1.length">
-                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData1[index].images+'.jpg)'}"></div>
+                                <div class="imgBox" :style="{backgroundImage:'url(static/goods/'+newData1[index].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData1[index].artist}}</li>
                                     <li>{{newData1[index].name}}，{{newData1[index].time}}</li>
@@ -579,7 +579,7 @@
                     <div class="right">
                         <div class="item" v-for="i in 8" :key="i" ref="itemEl">
                             <router-link tag="div" :to="'/goodsDetails/'+newData0[i+1]._id+'/imgSrc/'+newData0[i+1].images" class="itemDiv" v-if="newData0.length">
-                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData0[i+1].images+'.jpg)'}"></div>
+                                <div class="imgBox" :style="{backgroundImage:'url(static/goods/'+newData0[i+1].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData0[i+1].artist}}</li>
                                     <li>{{newData0[i+1].name}}</li>
@@ -589,7 +589,7 @@
                                 </ul>
                             </router-link>
                             <router-link tag="div" :to="'/goodsDetails/'+newData1[i+1]._id+'/imgSrc/'+newData1[i+1].images" class="itemDiv" v-if="newData1.length">
-                                <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData1[i+1].images+'.jpg)'}"></div>
+                                <div class="imgBox" :style="{backgroundImage:'url(static/goods/'+newData1[i+1].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData1[i+1].artist}}</li>
                                     <li>{{newData1[i+1].name}}</li>
@@ -658,9 +658,9 @@
                         <div class="showImg">
                             <div class="item" v-for="i in 3" :key="i">
                                 <div class="imgBox">
-                                    <div :style="{backgroundImage:'url(/static/img/7.jpg)'}"></div>
-                                    <div :style="{backgroundImage:'url(/static/img/8.jpg)'}"></div>
-                                    <div :style="{backgroundImage:'url(/static/img/21.jpg)'}"></div>
+                                    <div :style="{backgroundImage:'url(/static/goods/7.jpg)'}"></div>
+                                    <div :style="{backgroundImage:'url(/static/goods/8.jpg)'}"></div>
+                                    <div :style="{backgroundImage:'url(/static/goods/21.jpg)'}"></div>
                                 </div>
                                 <div class="name">
                                     <div>陈可</div>

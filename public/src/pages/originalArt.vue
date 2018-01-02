@@ -134,6 +134,10 @@ input {
             }
             .filter-right-right {
                 flex: 7;
+                background-image: url('');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
                 .img_content {
                     @include flexUi(center);
                     flex-direction: column;
@@ -497,7 +501,7 @@ input {
                     </ul>
                 </div>
                 <!-- 对应的图片 -->
-                <div class="filter-right-right" :style="{background: `url(${commonImg}) center no-repeat`}">
+                <div class="filter-right-right" :style="{backgroundImage: `url(${commonImg})`}">
                     <div class="img_content">
                         <h2>{{imgContent.cn_name}}</h2>
                         <h2>{{imgContent.en_name}}</h2>
@@ -553,7 +557,7 @@ input {
                 <li v-for="(i,index) in goods" :key="index" class="goods_box" ref="goodsLi">
                     <!-- 商品图片div -->
                     <router-link class="pic" :to="'/goodsDetails/'+i._id+'/imgSrc/'+i.images" tag="div">
-                        <img ref="goodsImg" :key="index" :src="'/static/img/'+i.images+'.jpg'" alt="图片">
+                        <img ref="goodsImg" :key="index" :src="'/static/goods/'+i.images+'.jpg'" alt="图片">
                     </router-link>
                     <!-- 商品信息div -->
                     <div class="info">
@@ -688,7 +692,7 @@ export default {
             //右侧 【要渲染】的图片、文字 数据
             imgContent: {},
             //右侧 图片路径
-            commonImg: "/static/img/02.jpg",
+            commonImg: "/static/rightImg/02.jpg",
             //选中的筛选条件 数据
             choosedTxt: {
                 price: "",
@@ -759,7 +763,7 @@ export default {
         hoverFun(i) {
             for (let val of this.styleAndthame_img) {
                 if (val.cn_name.match(i)) {
-                    this.commonImg = `/static/img/${val.imgSrc}.jpg`;
+                    this.commonImg = `/static/rightImg/${val.imgSrc}.jpg`;
                     this.imgContent = val;
                     return;
                 }
@@ -882,7 +886,7 @@ export default {
         // 图片预加载事件
         myload(len, count) {
             let imgObj = new Image();
-            imgObj.src = "/static/img/" + this.goods[count].images + ".jpg";
+            imgObj.src = "/static/goods/" + this.goods[count].images + ".jpg";
             imgObj.addEventListener("load", () => {
                 if (count >= len) {
                     this.$nextTick(() => {

@@ -233,7 +233,7 @@ header {
             <router-link v-if="$store.state.login.loginID===null" to="/login" tag="div" class="login_res">登录/注册</router-link>
             <!-- 用户登录了，显示头像，移入显示菜单 -->
             <div class="logined" v-else>
-                <img :src="'/static/img/'+$store.state.login.userimg+'.png'" alt="用户头像">
+                <img :src="'/static/userimg/'+$store.state.login.userimg+'.png'" alt="用户头像">
                 <ul class="caidan">
                     <li v-for="i in txList" :key="i.name">{{i.name}}</li>
                     <li @click="tuichu">退出</li>

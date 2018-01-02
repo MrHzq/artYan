@@ -635,7 +635,7 @@
         <!-- 第一屏 作品展示 生活场景-->
         <div class="shcj" v-show="tabIndex===2">
             <img class="bg" draggable="false" :src="'/static/img/scene'+imgIndex+'.jpg'" alt="生活场景图">
-            <img class="artImg" ref="imgEl2" :src="'/static/img/0.jpg'" alt="作品图片" draggable="false">
+            <img class="artImg" ref="imgEl2" :src="'/static/goods/0.jpg'" alt="作品图片" draggable="false">
             <!-- 更多场景 -->
             <div class="moreScene">
                 <div class="moreTxt">更多场景</div>
@@ -744,7 +744,7 @@
             <ul>
                 <!-- 艺术家 信息 -->
                 <li class="artist">
-                    <img class="artist_img" :src="'/static/img/'+artistObj.photo" alt="作者图片">
+                    <img class="artist_img" :src="'/static/artist/'+artistObj.photo" alt="作者图片">
                     <div class="info">
                         <b>{{artistObj.ch_name}}</b>
                         <img src="/static/img/artist_icon.png" alt="">
@@ -756,7 +756,7 @@
                 <!-- 3个艺术品 -->
                 <li class="art" v-for="i in artistArt" :key="i._id">
                     <!-- 作品图片 -->
-                    <div @click="goFun(i)" :style="{height: '230px',cursor: 'pointer',background:'url(/static/img/'+i.images+'.jpg) center center no-repeat',backgroundSize:'100%'}">
+                    <div @click="goFun(i)" :style="{height: '230px',cursor: 'pointer',background:'url(/static/goods/'+i.images+'.jpg) center center no-repeat',backgroundSize:'100%'}">
                     </div>
                     <div class="info">
                         <p>{{i.name}}</p>
@@ -998,11 +998,11 @@ export default {
                     let imgObj = new Image(),
                         len = this.goodsInfo.appraiseArr.length - 1;
                     imgObj.src =
-                        "/static/img/" + this.goodsInfo.images + ".jpg";
+                        "/static/goods/" + this.goodsInfo.images + ".jpg";
                     for (let i = 0; i < len; i++) {
                         let y = parseInt(Math.random() * 100);
                         this.bgImg.push({
-                            background: `url(/static/img/${this.goodsInfo
+                            background: `url(/static/goods/${this.goodsInfo
                                 .images}.jpg) center ${y}% no-repeat`,
                             backgroundSize: "150%"
                         });
