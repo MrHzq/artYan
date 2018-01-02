@@ -8,7 +8,7 @@
     -webkit-align-items: center;
     align-items: center;
 }
-input{
+input {
     outline: none;
     border: none;
 }
@@ -962,6 +962,11 @@ export default {
             }
         });
         this.getGoods();
+        // console.log()
+        let sessionCode = ["classfiy", "price", "size", "style"];
+        for (let i of sessionCode) {
+            console.log(sessionStorage[i]);
+        }
     }
 };
 </script>

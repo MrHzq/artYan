@@ -60,21 +60,21 @@ export default {
                     toSrc: "/index"
                 },
                 {
-                    name: "原创艺术",
-                    toSrc: "/originalArt"
+                    name: "畅所艺言",
+                    toSrc: "/originalart"
                 },
-                {
-                    name: "造艺",
-                    toSrc: "/makeArt"
-                },
-                {
-                    name: "藏艺术",
-                    toSrc: "/hideArt"
-                },
-                {
-                    name: "我的珍藏",
-                    toSrc: "/myCollection"
-                }
+                // {
+                //     name: "造艺",
+                //     toSrc: "/makeArt"
+                // },
+                // {
+                //     name: "藏艺术",
+                //     toSrc: "/hideArt"
+                // },
+                // {
+                //     name: "我的珍藏",
+                //     toSrc: "/myCollection"
+                // }
             ]
         };
     }
