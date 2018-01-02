@@ -255,21 +255,21 @@ export default {
             //导航数据
             navList: [
                 {
-                    name: "原创艺术",
+                    name: "畅所艺言",
                     toSrc: "/originalart"
                 },
-                {
-                    name: "造艺",
-                    toSrc: "/makeart"
-                },
-                {
-                    name: "藏艺术",
-                    toSrc: "/hideart"
-                },
-                {
-                    name: "我的珍藏",
-                    toSrc: "/mycollection"
-                }
+                // {
+                //     name: "造艺",
+                //     toSrc: "/makeart"
+                // },
+                // {
+                //     name: "藏艺术",
+                //     toSrc: "/hideart"
+                // },
+                // {
+                //     name: "我的珍藏",
+                //     toSrc: "/mycollection"
+                // }
             ],
             //是否显示搜索框
             isSearch: true,

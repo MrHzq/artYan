@@ -298,7 +298,7 @@
                 </div>
                 <div class="content">
                     <div class="item" v-for="i in tuiJianData[currClassify]" :key="i._id">
-                        <router-link class="imgBox" tag="div" to="/originalart">
+                        <router-link class="imgBox" tag="div" :to="'/goodsDetails/'+i._id+'/imgSrc/'+i.images">
                             <div :style="{backgroundImage:'url(static/img/'+i.images+'.jpg)'}"></div>
                         </router-link>
                         <ul class="info">
@@ -324,7 +324,7 @@
                 <div class="content">
                     <div class="left">
                         <div class="item" v-for="(i,index) in 2" :key="i" ref="itemEl">
-                            <div class="itemDiv" v-if="newData0.length">
+                            <router-link tag="div" :to="'/goodsDetails/'+newData0[index]._id+'/imgSrc/'+newData0[index].images" class="itemDiv" v-if="newData0.length">
                                 <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData0[index].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData0[index].artist}}</li>
@@ -332,8 +332,8 @@
                                     <li>{{newData0[index].classfiy}} {{newData0[index].size.x}}x{{newData0[index].size.y}} cm</li>
                                     <li>{{newData0[index].price | formatMoney}}</li>
                                 </ul>
-                            </div>
-                            <div class="itemDiv" v-if="newData1.length">
+                            </router-link>
+                            <router-link tag="div" :to="'/goodsDetails/'+newData1[index]._id+'/imgSrc/'+newData1[index].images" class="itemDiv" v-if="newData1.length">
                                 <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData1[index].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData1[index].artist}}</li>
@@ -341,12 +341,12 @@
                                     <li>{{newData1[index].classfiy}} {{newData1[index].size.x}}x{{newData1[index].size.y}} cm</li>
                                     <li>{{newData1[index].price | formatMoney}}</li>
                                 </ul>
-                            </div>
+                            </router-link>
                         </div>
                     </div>
                     <div class="right">
                         <div class="item" v-for="i in 8" :key="i" ref="itemEl">
-                            <div class="itemDiv" v-if="newData0.length">
+                            <router-link tag="div" :to="'/goodsDetails/'+newData0[i+1]._id+'/imgSrc/'+newData0[i+1].images" class="itemDiv" v-if="newData0.length">
                                 <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData0[i+1].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData0[i+1].artist}}</li>
@@ -354,8 +354,8 @@
                                     <li>{{newData0[i+1].classfiy}} {{newData0[i+1].size.x}}x{{newData0[i+1].size.y}} cm</li>
                                     <li>{{newData0[i+1].price | formatMoney}}</li>
                                 </ul>
-                            </div>
-                            <div class="itemDiv" v-if="newData1.length">
+                            </router-link>
+                            <router-link  tag="div" :to="'/goodsDetails/'+newData1[i+1]._id+'/imgSrc/'+newData1[i+1].images"   class="itemDiv" v-if="newData1.length">
                                 <div class="imgBox" :style="{backgroundImage:'url(static/img/'+newData1[i+1].images+'.jpg)'}"></div>
                                 <ul class="info">
                                     <li>{{newData1[i+1].artist}}</li>
@@ -364,7 +364,7 @@
                                     <li>{{newData1[i+1].classfiy}} {{newData1[i+1].size.x}}x{{newData1[i+1].size.y}} cm</li>
                                     <li>{{newData1[i+1].price | formatMoney}}</li>
                                 </ul>
-                            </div>
+                            </router-link >
                         </div>
                     </div>
                 </div>
