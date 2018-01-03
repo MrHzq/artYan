@@ -9,18 +9,18 @@
 * [Vue.js](https://cn.vuejs.org/v2/guide/)<br>
 因为公司在使用vue，并且自己对于vue也很熟悉了，所以决定使用vue的单页面应用来搭建项目。接下来讲述下如何搭建vue单页面应用。<br>
 **vue单页面开发环境搭建**
-    1. 安装npm包管理器
+    1. **安装npm包管理器**
     * 下载nodejs开发环境，https://nodejs.org/en/。
     * 安装好后，以管理员的身份进入cmd命令行，输入 `npm -v`,可以看到返回当前版本号。
     * 因为国外的网络原因，将npm包的资源库改为淘宝的资源库。
     输入 `npm config set registry https://registry.npm.taobao.org`
-    2. 建立VUE项目
+    2. **建立VUE项目**
     * 在喜欢的路径下建立一个项目文件夹，比如 **C:\myvue** ，并通过cmd打开命令行，进入到该文件夹路径。
     * 输入 `npm install -g vue-cli`，安装vue脚手架工具vue-cli。
     * 创建vue单页面应用<br>
     vue-cli 安装完成后，再次输入命令 `vue init webpack myproject`（myproject是项目名，可随意取名）。则创建了一个vue单页面应用。<br>
     然后会有以下提示出来<br>
-    **Project name（myproject）** 项目名称，可自己输入也可以直接回车采用括号里面的默认值<br>
+        **Project name（myproject）** 项目名称，可自己输入也可以直接回车采用括号里面的默认值<br>
     **Project description (A Vue.js project)** 项目描述，可自己输入也可以直接回车采用括号里面的默认值<br>
     **Author (hzq <***@163.com>)** 作者，可自己输入也可以直接回车采用括号里面的默认值<br>
     **Vue build (Use arrow keys)**
