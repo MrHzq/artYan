@@ -5,16 +5,16 @@
 ## 开始
 ### 前端技术选择
 <!-- 1. CSS <br>
-自己写代码一直使用[CSS](http://www.w3school.com.cn/css/index.asp)，现在想换一种方式，网上找了下，最后决定使用[Sass](https://www.sass.hk/)<br> -->
+自己写代码一直使用[CSS](http://www.w3school.com.cn/css/index.asp)，现在想换一种方式，网上找了下，最后决定使用<br> -->
 * [Vue.js](https://cn.vuejs.org/v2/guide/)<br>
 因为公司在使用vue，并且自己对于vue也很熟悉了，所以决定使用vue的单页面应用来搭建项目。接下来讲述下如何搭建vue单页面应用。<br>
 **vue单页面开发环境搭建**
-    1. 安装npm包管理器
+    1. **安装npm包管理器**
     * 下载nodejs开发环境，https://nodejs.org/en/。
     * 安装好后，以管理员的身份进入cmd命令行，输入 `npm -v`,可以看到返回当前版本号。
     * 因为国外的网络原因，将npm包的资源库改为淘宝的资源库。
     输入 `npm config set registry https://registry.npm.taobao.org`
-    2. 建立VUE项目
+    2. **建立VUE项目**
     * 在喜欢的路径下建立一个项目文件夹，比如 **C:\myvue** ，并通过cmd打开命令行，进入到该文件夹路径。
     * 输入 `npm install -g vue-cli`，安装vue脚手架工具vue-cli。
     * 创建vue单页面应用<br>
@@ -36,7 +36,32 @@ mmended) (Use arrow keys)** <br>
     * Yes, use Yarn
     * No, I will handle that myself
     3. 以上**单页面应用**创建就完成，在当前文件下面有个**myproject**文件夹，那就是你的单页面应用了。
-    
-
-
-
+    4. 输入 `cd myproject`，进入项目文件，再次输入 `npm run dev`，会在你的默认浏览器里面打开一个页面，有Vue logo的页面，那说明你的单页面应用就成功了。
+    5. 如果你的浏览器没反应，并且命令行里面提示 `Your application is running here: http://localhost:8082`，那你将 `http://localhost:8082`复制，然后在浏览器里面访问，如果也能打开一个有Vue Logo的页面，那单页面应用也成功了。
+* [Sass](https://www.sass.hk/)
+<br>
+因为之前一直使用的是css，现在想换一个方式，上网搜索下，决定选择sass。<br>
+在单页面中使用Sass，需要安装2个sass的依赖包<br>sass-loader依赖于node-sass<br> 
+`npm install --save-dev node-sass`<br> 
+`npm install --save-dev sass-loader` <br> 
+然后在 *.vue文件里面<br>
+`<style lang="scss" scoped> 你的sass代码写在这 </style>`
+就可以使用了。
+* [Axios](https://www.kancloud.cn/yunye/axios/234845)<br>
+axios简单来说，类似ajax，可以用来发送post、get请求。可以配合vue-axios插件一起使用<br>
+**安装**  `npm install --save axios vue-axios`<br>
+**配置**  <br>
+在 **main.js** 里面<br>
+`import Vue from 'vue'`<br>
+`import axios from 'axios'`<br>
+`import VueAxios from 'vue-axios'`<br>
+`Vue.use(VueAxios, axios) `<br>
+**使用**
+    * get：`this.$http.get(请求地址).then((data) => {
+    console.log("返回数据"+data)
+    })`
+    * post：`this.$http.post(请求地址,参数对象).then((data) => {
+    console.log("返回数据"+data)
+    })`
+* [Vuex](https://vuex.vuejs.org/zh-cn/intro.html)<br>
+Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。简单理解为：一个全局的变量，在任何.vue文件里面都可以操作。
