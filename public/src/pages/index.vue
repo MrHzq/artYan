@@ -18,7 +18,10 @@
         top: 68px;
         width: 100%;
         height: 420px;
-        transition: background 1s;
+        background-image: url("/static/banner/banner1.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: background-image 1s;
         //点
         ul {
             @include flexUi(space-between);
@@ -517,7 +520,7 @@
 <template>
     <div class="main" v-cloak>
         <!-- banner -->
-        <div class="banner" :style="{background:'url(static/banner/banner'+currIndex+'.jpg) center'}">
+        <div class="banner" :style="{backgroundImage:'url(static/banner/banner'+currIndex+'.jpg)'}">
             <ul>
                 <li v-for="i in 6" :key="i" :class="{currLi:i===currIndex}" @click="clickLi(i)"></li>
             </ul>
