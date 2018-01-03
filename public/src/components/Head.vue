@@ -5,6 +5,7 @@ $navWidth: 100px;
 input {
     border: none;
     outline: none;
+    background-color: transparent;
 }
 // flex布局函数；使用方式：@include flexUi;
 @mixin flexUi($justify:flex-start) {
@@ -114,7 +115,7 @@ header {
         color: #000;
         cursor: pointer;
         &:hover .caidan {
-            display: block;
+            // display: block;
         }
         img {
             width: 30px;

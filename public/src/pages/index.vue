@@ -245,12 +245,13 @@
                     font-size: 30px;
                 }
                 .selectBox {
+                    width: 100%;
                     select {
                         margin-left: 20px;
                         padding: 0 20px;
                         font-size: 14px;
                         color: #333333;
-                        width: 200px;
+                        width: 20%;
                         height: 44px;
                         border-radius: 4px;
                         outline: none;
