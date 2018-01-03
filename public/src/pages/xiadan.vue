@@ -199,7 +199,7 @@
 
     .content {
         position: fixed;
-        top: 90px;
+        top: 80px;
         left: 0;
         right: 0;
         margin: 0 auto;
@@ -275,7 +275,7 @@
             }
             // 保存、取消按钮
             .btnBox {
-                margin: 50px 80px;
+                margin: 30px 80px 10px;
                 text-align: center;
                 button {
                     width: 140px;
@@ -392,9 +392,9 @@
         <!-- 购买商品 -->
         <h4>购买商品</h4>
         <ul class="goodsList">
-            <li v-for="i in goods" :key="i.name">
+            <li v-for="i in goods" :key="i._id">
                 <div class="imgBox">
-                    <img :src="'/static/img/'+i.images+'.jpg'" alt="作品图片">
+                    <img :src="'/static/goods/'+i.images+'.jpg'" alt="作品图片">
                 </div>
                 <div class="info">
                     <div>{{i.name}}</div>
@@ -4688,6 +4688,7 @@ export default {
                 this.goods.forEach(val => {
                     this.totalMoney += val.price;
                 });
+                console.log(this.goods)
             });
     }
 };

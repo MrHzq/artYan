@@ -10,6 +10,6 @@ const store = new Vuex.Store({
     state,
     mutations,
     actions,    
-    // plugins: [createPersistedState()]
+    plugins: [createPersistedState()]
 });
 export default store;
