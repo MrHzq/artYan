@@ -3,7 +3,7 @@
 项目开始时间为2017年12月1日。<br>
 当时的情况为：公司没事可做，自己准备换工作，发现缺少拿的出手的项目，又想检验下自己的技术能力，等等...才决定写一个能找工作的项目。
 ## 开始
-### 前端技术选择
+### 前端
 * **[Vue.js](https://cn.vuejs.org/v2/guide/)**<br>
 因为公司在使用vue，并且自己对于vue也很熟悉了，所以决定使用vue的单页面应用来搭建项目。接下来讲述下如何搭建vue单页面应用。<br>
 **vue单页面开发环境搭建**
@@ -62,3 +62,29 @@ axios简单来说，类似ajax，可以用来发送post、get请求。可以配�
     })`
 * **[Vuex](https://vuex.vuejs.org/zh-cn/intro.html)**<br>
 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。简单理解为：一个全局的变量，在任何.vue文件里面都可以操作。
+* **[JavaScript](http://www.w3school.com.cn/js/)**<br>
+js方面就使用了些[ES6](http://es6.ruanyifeng.com/)的语法，然后这个单页面应用自带将ES6编译为ES5的功能，所以直接使用ES6语法即可。
+### 后端
+* **[Node.js](https://nodejs.org/zh-cn/)**<br>
+因为我目前接触到的后端技术就2个：PHP、Node，所以就选 Node了。
+* **[Express](http://www.expressjs.com.cn/)**<br>
+Express 基于 Node.js 的 web 应用开发框架。因为用它来搭建服务器只需三步，所以就选择了它。<br>    
+    * **创建项目文件**<br>
+    先创建一个文件夹，可命名为**server**，它与单页面应用文件(myproject)是**同级并列**关系。<br>
+    然后通过命令行进入到**server**文件夹里面去，输入`npm init`，初始化一个node项目，之后一直enter到结束。<br>
+    现在**server**文件夹里面就有一个**package.json**文件了。
+    * **安装** 命令行输入`npm install express --save`，我这就会自动生成一个**node_modulesh**文件夹和**package-lock.json**。
+    * **搭建服务器** 在**server**里面新建一个index.js文件，然后编辑index.js。
+    * **编辑 index.js**<br>
+    引入Express依赖：`const express = require("express");`<br>
+    实例Express：`const app = express();`<br>
+    监听端口：`app.listen(9500);` 9500为端口号，可自定义的。<br>
+    `console.log("**********【服务器启动成功】**********");`<br>
+    * **启动服务器** 在命令行输入 `node index`，即可启动成功，并且会打印 `**********【服务器启动成功】**********`<br>
+    so 服务器也弄好了。
+### 数据库
+* **[MongoDB](http://www.runoob.com/mongodb/mongodb-tutorial.html)**<br>
+对于我而言，数据库方面仅接触过MySQL，所以一开始要使用MongoDB，我是拒绝的。但我在网上看了看，发现这个MongoDB有JSON存储的功能，觉得很符合我自己的需求，所以就从零开始摸索使用了。<br>
+下载与安装，均可参考此[文档](http://blog.csdn.net/sophie_u/article/details/53088891)<br>
+再推荐一个MongoDB的可视化操作软件mongobooster,可在这[下载](https://pan.baidu.com/s/1dEUUyCL)，密码：q8ox，按需下载即可。
+
