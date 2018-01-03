@@ -4,7 +4,7 @@
 当时的情况为：公司没事可做，自己准备换工作，发现缺少拿的出手的项目，又想检验下自己的技术能力，等等...才决定写一个能找工作的项目。
 ## 开始
 ### 前端技术选择
-* [Vue.js](https://cn.vuejs.org/v2/guide/)<br>
+* **[Vue.js](https://cn.vuejs.org/v2/guide/)**<br>
 因为公司在使用vue，并且自己对于vue也很熟悉了，所以决定使用vue的单页面应用来搭建项目。接下来讲述下如何搭建vue单页面应用。<br>
 **vue单页面开发环境搭建**
     1. **安装npm包管理器**
@@ -36,7 +36,7 @@ mmended) (Use arrow keys)** <br>
     3. 以上**单页面应用**创建就完成，在当前文件下面有个**myproject**文件夹，那就是你的单页面应用了。
     4. 输入 `cd myproject`，进入项目文件，再次输入 `npm run dev`，会在你的默认浏览器里面打开一个页面，有Vue logo的页面，那说明你的单页面应用就成功了。
     5. 如果你的浏览器没反应，并且命令行里面提示 `Your application is running here: http://localhost:8082`，那你将 `http://localhost:8082`复制，然后在浏览器里面访问，如果也能打开一个有Vue Logo的页面，那单页面应用也成功了。
-* [Sass](https://www.sass.hk/)<br>
+* **[Sass](https://www.sass.hk/)**<br>
 因为之前一直使用的是css，现在想换一个方式，上网搜索下，决定选择sass。<br>
 在单页面中使用Sass，需要安装2个sass的依赖包<br>sass-loader依赖于node-sass<br> 
 `npm install --save-dev node-sass`<br> 
@@ -44,7 +44,7 @@ mmended) (Use arrow keys)** <br>
 然后在 *.vue文件里面<br>
 `<style lang="scss" scoped> 你的sass代码写在这 </style>`
 就可以使用了。
-* [Axios](https://www.kancloud.cn/yunye/axios/234845)<br>
+* **[Axios](https://www.kancloud.cn/yunye/axios/234845)**<br>
 axios简单来说，类似ajax，可以用来发送post、get请求。可以配合vue-axios插件一起使用<br>
 **安装**  `npm install --save axios vue-axios`<br>
 **配置**  <br>
@@ -60,5 +60,5 @@ axios简单来说，类似ajax，可以用来发送post、get请求。可以配�
     * post：`this.$http.post(请求地址,参数对象).then((data) => {
     console.log("返回数据"+data)
     })`
-* [Vuex](https://vuex.vuejs.org/zh-cn/intro.html)<br>
+* **[Vuex](https://vuex.vuejs.org/zh-cn/intro.html)**<br>
 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。简单理解为：一个全局的变量，在任何.vue文件里面都可以操作。
