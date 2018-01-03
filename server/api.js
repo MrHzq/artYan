@@ -121,7 +121,11 @@ app.post("/api/getArtistAndArt", (req, res) => {
         };
         let good = () => {
             if (count > 3) {
-                parmas._id = { $nin: [mongoose.Types.ObjectId(parmas._id)] };
+                if (parmas._id)
+                    parmas._id = {
+                        $nin: [mongoose.Types.ObjectId(parmas._id)]
+                    };
+                else delete parmas._id;
                 return models.Goods.find(parmas).limit(3).exec();
             } else {
                 return models.Goods.find({ artist: parmas.artist }).exec();
@@ -446,9 +450,32 @@ app.get("/api/getTuiJianData", (req, res) => {
 
 // 获取【首页】==>【最新上架】 20条数据
 app.post("/api/getNewData", (req, res) => {
+    models.Goods
+        .find()
+        .skip(req.body.num)
+        .limit(req.body.limit)
+        .exec((err, data) => {
+            res.send(data);
+        });
+});
 
-    models.Goods.find().skip(req.body.num).limit(req.body.limit).exec((err, data) => {
-        res.send(data);
+// 随机获取3个艺术家+作品数量+作品
+app.get("/api/getArtist", (req, res) => {
+    let num = parseInt(Math.random() * 6),
+        backJSON = [];
+    models.Artists.find().skip(num).limit(3).exec((err, data1) => {
+        data1.forEach((val, index) => {
+            models.Goods.find({ artist: val.ch_name }, (err, data2) => {
+                backJSON.push({
+                    name: val.ch_name,
+                    count: data2.length,
+                    art: data2.slice(0, 3)
+                });
+                if (backJSON.length === data1.length) {
+                    res.send(backJSON);
+                }
+            });
+        });
     });
 });
 module.exports = app;

@@ -467,6 +467,8 @@
                                     height: 180px;
                                     background-image: url("/static/img/7.jpg");
                                     background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: center;
                                     opacity: 0.2;
                                     transition: all 0.5s;
                                     &:nth-child(2) {
@@ -656,15 +658,13 @@
                     <div class="right">
                         <p>更多艺术家</p>
                         <div class="showImg">
-                            <div class="item" v-for="i in 3" :key="i">
+                            <div class="item" v-for="i in artistJSON" :key="i.name">
                                 <div class="imgBox">
-                                    <div :style="{backgroundImage:'url(/static/goods/7.jpg)'}"></div>
-                                    <div :style="{backgroundImage:'url(/static/goods/8.jpg)'}"></div>
-                                    <div :style="{backgroundImage:'url(/static/goods/21.jpg)'}"></div>
+                                    <div v-for="j in i.art" :key="j._id" :style="{backgroundImage:'url(/static/goods/'+j.images+'.jpg)'}"></div>
                                 </div>
                                 <div class="name">
-                                    <div>陈可</div>
-                                    <div>6件</div>
+                                    <div>{{i.name}}</div>
+                                    <div>{{i.count}}件</div>
                                 </div>
                             </div>
                         </div>
@@ -814,7 +814,13 @@ export default {
                     title: "认识极简主义，享受精致生活",
                     txt: "追求 minimalist life 的过程，就是深刻认识精致之美的过程。"
                 }
-            ]
+            ],
+            // 艺术家展示数据
+            artistJSON: {
+                count: 0,
+                name: "",
+                art: []
+            }
         };
     },
     filters: {
@@ -912,12 +918,20 @@ export default {
         suohui(e) {
             e.target.parentNode.style.width = "320px";
             e.target.previousSibling.previousSibling.style.padding = "0 0";
+        },
+        // 获取艺术家数据
+        getArtist() {
+            this.$http.get("/api/getArtist").then(data => {
+                this.artistJSON = data.data;
+                console.log(this.artistJSON);
+            });
         }
     },
     mounted() {
         this.autoplay();
         this.getTuiJianData();
         this.getNewData(20);
+        this.getArtist();
     }
 };
 </script>
