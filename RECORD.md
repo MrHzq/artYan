@@ -20,7 +20,7 @@
     * 创建vue单页面应用<br>
     vue-cli 安装完成后，再次输入命令 `vue init webpack myproject`（myproject是项目名，可随意取名）。则创建了一个vue单页面应用。<br>
     然后会有以下提示出来<br>
-    **Project name（myproject）** 项目名称，可自己输入也可以直接回车采用括号里面的默认值<br>
+        **Project name（myproject）** 项目名称，可自己输入也可以直接回车采用括号里面的默认值<br>
     **Project description (A Vue.js project)** 项目描述，可自己输入也可以直接回车采用括号里面的默认值<br>
     **Author (hzq <***@163.com>)** 作者，可自己输入也可以直接回车采用括号里面的默认值<br>
     **Vue build (Use arrow keys)**
