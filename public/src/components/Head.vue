@@ -218,7 +218,7 @@ header {
                 <router-link v-for="i in navList" :key="i.name" :to="i.toSrc" tag="div" active-class="actived">{{i.name}}</router-link>
             </nav>
             <!-- 搜索icon 框 -->
-            <div class="search_iconBox" @click="isSearch=!isSearch">
+            <!-- <div class="search_iconBox" @click="isSearch=!isSearch">
                 <transition name="icon-fade" mode="out-in">
                     <div key="search" v-if="isSearch">
                         <i class="iconfont icon-search"></i>
@@ -227,7 +227,7 @@ header {
                         <i class="iconfont icon-icon"></i>
                     </div>
                 </transition>
-            </div>
+            </div> -->
             <!-- 购物车icon -->
             <router-link to="/shopcar" tag="div" class="iconfont icon-gouwuche-01" v-if="$store.state.login.loginID"></router-link>
             <!-- 登录/注册 -->

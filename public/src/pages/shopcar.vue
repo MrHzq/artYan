@@ -119,6 +119,9 @@
                                 margin-left: 20px;
                                 margin-right: 50px;
                                 cursor: pointer;
+                                background-image: url("/static/goods/0.jpg");
+                                background-size: cover;
+                                background-repeat: no-repeat;                                
                             }
                             // 作品详细信息
                             .info {
@@ -263,7 +266,7 @@
                                     <span v-if="i.choosed[jIndex]" class="iconfont icon-kuangxuan-copy"></span>
                                     <span v-else class="iconfont icon-kuang"></span>
                                 </div>
-                                <router-link :to="'/goodsDetails/'+j._id+'/imgSrc/'+j.images" tag="div" class="imgBox" :style="{background:`url(/static/img/${j.images}.jpg`,backgroundSize:'cover'}"></router-link>
+                                <router-link :to="'/goodsDetails/'+j._id+'/imgSrc/'+j.images" tag="div" class="imgBox" :style="{backgroundImage:`url(/static/goods/${j.images}.jpg`}"></router-link>
                                 <div class="info">
                                     <h4>{{j.name}}</h4>
                                     <router-link to="/index" tag="p" class="artist">{{j.artist}}</router-link>

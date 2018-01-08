@@ -170,6 +170,7 @@
                 }
             }
             .buy {
+                user-select: none;
                 span {
                     width: 48%;
                     height: 40px;
@@ -264,7 +265,10 @@
         left: 40%;
         top: 15%;
         cursor: move;
-        font-size: 0;
+        background-image: url("/static/goods/0.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
         filter: drop-shadow(0 5px 4px rgba(0, 0, 0, 0.6));
     }
     .moreScene {
@@ -565,14 +569,14 @@
 }
 </style>
 <template>
-    <div class="main" @click="shocarTips=''">
+    <div class="main" @click.self="shocarTips=''">
         <!-- 美术馆、生活场景 切换按钮 -->
         <div class="tabBox">
             <div :class="{currTab:tabIndex===1}" @click="tabFun(1)">美术馆</div>
             <div :class="{currTab:tabIndex===2}" @click="tabFun(2)">生活场景</div>
         </div>
         <!-- 第一屏 作品展示 美术馆-->
-        <div class="goodsBox" v-show="tabIndex===1" @click="showBox(0)">
+        <div class="goodsBox" v-show="tabIndex===1" @click.self="showBox(0)">
             <!-- 作品图片展示-->
             <div class="goodsShow" @mouseover="tabIndex===1 && sizeFun(1)" @mouseout="tabIndex===1 && sizeFun(0)">
                 <transition name="fade">
@@ -635,7 +639,7 @@
         <!-- 第一屏 作品展示 生活场景-->
         <div class="shcj" v-show="tabIndex===2">
             <img class="bg" draggable="false" :src="'/static/img/scene'+imgIndex+'.jpg'" alt="生活场景图">
-            <img class="artImg" ref="imgEl2" :src="'/static/goods/0.jpg'" alt="作品图片" draggable="false">
+            <div class="artImg" ref="imgEl2"></div>
             <!-- 更多场景 -->
             <div class="moreScene">
                 <div class="moreTxt">更多场景</div>
@@ -953,12 +957,13 @@ export default {
         addShopcar() {
             if (this.$store.state.login.loginID === null)
                 this.$router.push("/login");
-            else {
+            else if (this.goodsInfo.status === "0") {
+                this.shocarTips = "该作品已出售，请另选作品";
+            } else {
                 let time = new Date(),
                     year = time.getFullYear(),
                     month = time.getMonth() + 1,
                     day = time.getDate();
-
                 this.$http
                     .post("/api/addShopcar", {
                         userid: this.$store.state.login.loginID,
@@ -1000,11 +1005,12 @@ export default {
                     imgObj.src =
                         "/static/goods/" + this.goodsInfo.images + ".jpg";
                     for (let i = 0; i < len; i++) {
-                        let y = parseInt(Math.random() * 100);
+                        let y = parseInt(Math.random() * 100),
+                            x = parseInt(Math.random() * 100);
                         this.bgImg.push({
                             background: `url(/static/goods/${this.goodsInfo
-                                .images}.jpg) center ${y}% no-repeat`,
-                            backgroundSize: "150%"
+                                .images}.jpg) ${x}% ${y}% no-repeat`,
+                            backgroundSize: "200%"
                         });
                     }
                     imgObj.onload = () => {
@@ -1012,8 +1018,12 @@ export default {
                         this.$refs.imgEl.height = imgObj.height * 0.35;
                         this.$refs.imgEl.parentNode.style.width =
                             imgObj.width * 0.35 + "px";
-                        this.$refs.imgEl2.src = imgObj.src;
-                        this.$refs.imgEl2.height = imgObj.height * 0.25;
+                        this.$refs.imgEl2.style.backgroundImage =
+                            "url(" + imgObj.src + ")";
+                        this.$refs.imgEl2.style.height =
+                            imgObj.height * 0.25 + "px";
+                        this.$refs.imgEl2.style.width =
+                            imgObj.width * 0.25 + "px";
                         this.$refs.leftEl.style.width =
                             this.$refs.imgEl.height - 2 + "px";
                         this.$refs.imgEl.parentNode.style.marginTop =

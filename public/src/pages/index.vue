@@ -872,7 +872,9 @@ export default {
                             "transform:rotateY(-180deg);transition:transform 0s;";
                         this.timer2 = 1;
                         if (index === 9) {
-                            this.huanNum++;
+                            if (this.huanNum < 3) {
+                                this.huanNum++;
+                            } else this.huanNum = 0;
                             this.getNewData();
                         }
                         this.back = front;
